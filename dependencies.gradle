@@ -12,10 +12,21 @@ ext {
     okhttpVersion = "4.3.1"
     glideVersion = "4.12.0"
 
+    gsonVersion = "2.8.6"
+
     libraryDependencies = [
             retrofit                 : "com.squareup.retrofit2:retrofit:$retrofitVersion",
             retrofitGsonConverter    : "com.squareup.retrofit2:converter-gson:$retrofitGsonConverterVersion",
             retrofitCoroutinesAdapter: "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$retrofitCoroutinesAdapter",
             okhttpLoger              : "com.squareup.okhttp3:logging-interceptor:$okhttpVersion",
+            gson                     : "com.google.code.gson:gson:$gsonVersion"
+    ]
+
+    koinDependencies = [
+            koinCore        : "org.koin:koin-core:$koinVersion",
+            koinCoreExt     : "org.koin:koin-core-ext:$koinVersion",
+            koinAndroid     : "org.koin:koin-android:$koinVersion",
+            koinAndroidScope: "org.koin:koin-android-scope:$koinVersion",
+            koinViewmodel   : "org.koin:koin-androidx-viewmodel:$koinVersion",
     ]
 }
