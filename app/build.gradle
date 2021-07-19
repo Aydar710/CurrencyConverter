@@ -52,4 +52,9 @@ dependencies {
     implementation dependencies.koinDependencies.koinCore
     implementation dependencies.koinDependencies.koinAndroid
     implementation dependencies.koinDependencies.koinAndroidScope
+
+    //kotlin
+    implementation dependencies.kotlinDependencies.kotlinStdlib
+    implementation dependencies.kotlinDependencies.coroutines
+    implementation dependencies.kotlinDependencies.coroutinesAndroid
 }

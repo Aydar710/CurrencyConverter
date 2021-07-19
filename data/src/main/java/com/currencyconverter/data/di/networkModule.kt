@@ -3,6 +3,7 @@ package com.currencyconverter.data.di
 import com.currencyconverter.data.BuildConfig
 import com.currencyconverter.data.gsonutils.GsonDateDeserializer
 import com.currencyconverter.data.gsonutils.GsonDateSerializer
+import com.currencyconverter.data.service.CurrenciesService
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
@@ -17,6 +18,7 @@ val networkModule = module {
     single { provideOkHttpClient() }
     single { provideRetrofit(get(), get()) }
     single { provideGson() }
+    single { get<Retrofit>().create(CurrenciesService::class.java) }
 }
 
 private fun provideRetrofit(
