@@ -13,6 +13,9 @@ ext {
     glideVersion = "4.12.0"
     gsonVersion = "2.8.6"
 
+    //androidX
+    lifecycleVersion = "2.2.0"
+
     //kotlin
     kotlinVersion = "1.5.10"
     coroutinesVersion = "1.3.7"
@@ -36,6 +39,10 @@ ext {
             koinCoreExt     : "org.koin:koin-core-ext:$koinVersion",
             koinAndroid     : "org.koin:koin-android:$koinVersion",
             koinAndroidScope: "org.koin:koin-android-scope:$koinVersion",
-            koinViewmodel   : "org.koin:koin-androidx-viewmodel:$koinVersion",
+            koinViewModel   : "org.koin:koin-androidx-viewmodel:$koinVersion",
+    ]
+
+    androidXDependencies = [
+            lifecycleViewModelKtx: "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
     ]
 }

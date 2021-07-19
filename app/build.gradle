@@ -32,6 +32,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -53,9 +56,13 @@ dependencies {
     implementation dependencies.koinDependencies.koinCore
     implementation dependencies.koinDependencies.koinAndroid
     implementation dependencies.koinDependencies.koinAndroidScope
+    implementation dependencies.koinDependencies.koinViewModel
 
     //kotlin
     implementation dependencies.kotlinDependencies.kotlinStdlib
     implementation dependencies.kotlinDependencies.coroutines
     implementation dependencies.kotlinDependencies.coroutinesAndroid
+
+    //androidX
+    implementation dependencies.androidXDependencies.lifecycleViewModelKtx
 }
