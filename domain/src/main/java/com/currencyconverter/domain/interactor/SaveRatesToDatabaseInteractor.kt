@@ -9,7 +9,8 @@ import com.currencyconverter.domain.model.ExchangeRate
 class SaveRatesToDatabaseInteractor(private val exchangeRateLocalRepository: ExchangeRateLocalRepository) {
 
     suspend operator fun invoke(currencies: Currencies) {
-        val rateHolderId = exchangeRateLocalRepository.saveExhangeRatesLocal(currencies.mapToExchangeRatesLocal())
+        exchangeRateLocalRepository.clearDatabase()
+        val rateHolderId = exchangeRateLocalRepository.saveExchangeRatesLocal(currencies.mapToExchangeRatesLocal())
         val exchangeRates = currencies.exchangeRates.map {
             it.toExchangeRateLocal(rateHolderId)
         }

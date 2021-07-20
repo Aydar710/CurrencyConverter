@@ -2,8 +2,8 @@ package com.currencyconverter
 
 import android.app.Application
 import com.currencyconverter.data.di.dataModules
-import com.currencyconverter.di.mainfeature.mainModules
 import com.currencyconverter.domain.di.domainModules
+import com.currencyconverter.featuremain.di.mainModules
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 

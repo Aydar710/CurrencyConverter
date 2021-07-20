@@ -5,10 +5,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.currencyconverter.domain.interactor.CurrencyConverterInteractor
+import com.currencyconverter.domain.interactor.GetRatesFromCacheInteractor
 import com.currencyconverter.domain.interactor.GetTodayCurrenciesInteractor
-import com.currencyconverter.domain.interactor.SyncRatesInteractor
+import com.currencyconverter.domain.interactor.SaveRatesToDatabaseInteractor
 import com.currencyconverter.domain.model.Currencies
 import com.currencyconverter.domain.model.ExchangeRate
+import com.currencyconverter.featuremain.utils.NetworkConnectionUtils
 import kotlinx.coroutines.launch
 import java.math.BigDecimal
 import java.util.*
@@ -16,7 +18,9 @@ import java.util.*
 class MainViewModel(
     private val getTodayCurrenciesInteractor: GetTodayCurrenciesInteractor,
     private val currencyConverterInteractor: CurrencyConverterInteractor,
-    private val syncRatesInteractor: SyncRatesInteractor
+    private val saveRatesToDatabaseInteractor: SaveRatesToDatabaseInteractor,
+    private val getRatesFromCacheInteractor: GetRatesFromCacheInteractor,
+    private val networkConnectionUtils: NetworkConnectionUtils
 ) : ViewModel() {
     companion object {
         private const val DEFAULT_VALUE_IN_RUBLES = 100.0
@@ -40,15 +44,31 @@ class MainViewModel(
 
     fun showCurrencies() {
         viewModelScope.launch {
-            val todayCurrenciesResult = getTodayCurrenciesInteractor.invoke()
-            todayCurrenciesResult.getOrNull()?.let {
-                _actualDataDate.postValue(it.date)
-                changeExchangeRates(it)
-                _currencies.postValue(exchangeRates.mapToCurrencyUiWithDefaultValue(DEFAULT_VALUE_IN_RUBLES))
-            } ?: run {
-                // TODO: show error or smth
+            if (networkConnectionUtils.isNetworkAvailable()) {
+                showCurrenciesFromNetwork()
+            } else {
+                showCurrenciesFromCache()
             }
         }
+    }
+
+    private suspend fun showCurrenciesFromNetwork() {
+        val todayCurrenciesResult = getTodayCurrenciesInteractor.invoke()
+        todayCurrenciesResult.getOrNull()?.let {
+            _actualDataDate.postValue(it.date)
+            changeExchangeRates(it)
+            _currencies.postValue(exchangeRates.mapToCurrencyUiWithDefaultValue(DEFAULT_VALUE_IN_RUBLES))
+            saveRatesToDatabaseInteractor.invoke(it)
+        } ?: run {
+            // TODO: show error or smth
+        }
+    }
+
+    private suspend fun showCurrenciesFromCache() {
+        val cacheCurrencies = getRatesFromCacheInteractor.invoke()
+        _actualDataDate.postValue(cacheCurrencies.date)
+        changeExchangeRates(cacheCurrencies)
+        _currencies.postValue(exchangeRates.mapToCurrencyUiWithDefaultValue(DEFAULT_VALUE_IN_RUBLES))
     }
 
     private fun changeExchangeRates(it: Currencies) {

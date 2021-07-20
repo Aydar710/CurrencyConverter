@@ -1,5 +1,3 @@
-package com.currencyconverter.di.mainfeature
+package com.currencyconverter.featuremain.di
 
-import com.currencyconverter.featuremain.di.viewModelModule
-
-val mainModules = arrayOf(viewModelModule)
+val mainModules = arrayOf(viewModelModule, utilsModule)
