@@ -1,6 +1,6 @@
 package com.currencyconverter.data.repository
 
-import com.currencyconverter.data.model.ExchangeRatesResponse
+import com.currencyconverter.data.model.remote.ExchangeRatesResponse
 import com.currencyconverter.data.service.ExchangeRatesService
 import com.currencyconverter.data.utils.makeApiCall
 

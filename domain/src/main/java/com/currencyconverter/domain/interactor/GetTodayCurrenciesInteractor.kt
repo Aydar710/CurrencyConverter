@@ -1,7 +1,7 @@
 package com.currencyconverter.domain.interactor
 
-import com.currencyconverter.data.model.ExchangeRate
-import com.currencyconverter.data.model.ExchangeRatesResponse
+import com.currencyconverter.data.model.remote.ExchangeRate
+import com.currencyconverter.data.model.remote.ExchangeRatesResponse
 import com.currencyconverter.data.repository.ExchangeRateRepository
 import com.currencyconverter.domain.model.Currencies
 

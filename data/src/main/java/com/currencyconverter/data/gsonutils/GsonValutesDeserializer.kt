@@ -1,6 +1,6 @@
 package com.currencyconverter.data.gsonutils
 
-import com.currencyconverter.data.model.ExchangeRate
+import com.currencyconverter.data.model.remote.ExchangeRate
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
