@@ -11,6 +11,7 @@ import com.currencyconverter.domain.model.Currencies
 import com.currencyconverter.domain.model.ExchangeRate
 import kotlinx.coroutines.launch
 import java.math.BigDecimal
+import java.util.*
 
 class MainViewModel(
     private val getTodayCurrenciesInteractor: GetTodayCurrenciesInteractor,
@@ -23,9 +24,11 @@ class MainViewModel(
 
     // public live data region
     val currencies: LiveData<List<CurrencyUi>> get() = _currencies
+    val actualDataDate: LiveData<Date> get() = _actualDataDate
 
     // private live data region
     private val _currencies = MutableLiveData<List<CurrencyUi>>()
+    private val _actualDataDate = MutableLiveData<Date>()
 
     private lateinit var exchangeRates: MutableList<ExchangeRate>
 
@@ -39,6 +42,7 @@ class MainViewModel(
         viewModelScope.launch {
             val todayCurrenciesResult = getTodayCurrenciesInteractor.invoke()
             todayCurrenciesResult.getOrNull()?.let {
+                _actualDataDate.postValue(it.date)
                 changeExchangeRates(it)
                 _currencies.postValue(exchangeRates.mapToCurrencyUiWithDefaultValue(DEFAULT_VALUE_IN_RUBLES))
             } ?: run {

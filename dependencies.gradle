@@ -48,6 +48,10 @@ ext {
             lifecycleViewModelKtx: "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion",
             room                 : "androidx.room:room-runtime:$roomVersion",
             roomKtx              : "androidx.room:room-ktx:$roomVersion",
-            roomCompiler         : "androidx.room:room-compiler:$roomVersion"
+            roomCompiler         : "androidx.room:room-compiler:$roomVersion",
+            lifecycleCommon      : "androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion",
+            lifecycleExtensions  : "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion",
+            lifecycleLivedataKtx : "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion",
+            lifecycleRuntimeKtx  : "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion",
     ]
 }

@@ -66,4 +66,8 @@ dependencies {
 
     //androidX
     implementation dependencies.androidXDependencies.lifecycleViewModelKtx
+    implementation dependencies.androidXDependencies.lifecycleCommon
+    implementation dependencies.androidXDependencies.lifecycleViewModelKtx
+    implementation dependencies.androidXDependencies.lifecycleRuntimeKtx
+    implementation dependencies.androidXDependencies.lifecycleExtensions
 }

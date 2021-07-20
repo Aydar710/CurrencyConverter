@@ -4,7 +4,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.currencyconverter.R
 import com.currencyconverter.databinding.ActivityMainBinding
+import com.currencyconverter.featuremain.utils.dateAndTimeShort
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,10 +26,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun observeViewModel() {
         with(viewModel) {
-            currencies.observe(this@MainActivity) {
-                currenciesAdapter?.submitList(it)
-            }
+            currencies.observe(this@MainActivity) { currenciesAdapter?.submitList(it) }
+            actualDataDate.observe(this@MainActivity, ::setupActualDate)
         }
+    }
+
+    private fun setupActualDate(date: Date) {
+        binding.tvActualDate.text = getString(R.string.data_as_of, date.dateAndTimeShort())
     }
 
     private fun initAdapter() {

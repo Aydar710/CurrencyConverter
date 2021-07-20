@@ -1,12 +1,11 @@
 package com.currencyconverter.data.model.remote
 
-import com.currencyconverter.data.gsonutils.GsonValutesDeserializer
 import com.google.gson.annotations.JsonAdapter
 import com.google.gson.annotations.SerializedName
 import java.util.*
 
 data class ExchangeRatesResponse(
-    @SerializedName("Date")
+    @SerializedName("Timestamp")
     val date: Date,
     @SerializedName("Valute")
     @JsonAdapter(GsonValutesDeserializer::class)
