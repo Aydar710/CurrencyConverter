@@ -66,4 +66,7 @@ dependencies {
     implementation dependencies.koinDependencies.koinCore
     implementation dependencies.koinDependencies.koinAndroid
     implementation dependencies.koinDependencies.koinAndroidScope
+
+    implementation dependencies.kotlinDependencies.coroutines
+    implementation dependencies.kotlinDependencies.coroutinesAndroid
 }

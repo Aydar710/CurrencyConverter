@@ -7,6 +7,6 @@ import java.util.*
 @Entity
 data class ExchangeRatesLocal(
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    val id: Int = 0,
     val date: Date
 )

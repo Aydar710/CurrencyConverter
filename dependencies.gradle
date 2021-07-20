@@ -15,7 +15,7 @@ ext {
 
     //androidX
     lifecycleVersion = "2.2.0"
-    roomVersion = "2.2.5"
+    roomVersion = "2.3.0"
 
     //kotlin
     kotlinVersion = "1.5.10"
@@ -32,7 +32,8 @@ ext {
             retrofitGsonConverter    : "com.squareup.retrofit2:converter-gson:$retrofitGsonConverterVersion",
             retrofitCoroutinesAdapter: "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$retrofitCoroutinesAdapter",
             okhttpLoger              : "com.squareup.okhttp3:logging-interceptor:$okhttpVersion",
-            gson                     : "com.google.code.gson:gson:$gsonVersion"
+            gson                     : "com.google.code.gson:gson:$gsonVersion",
+            roomCoroutines           : "androidx.room:room-coroutines:$roomVersion"
     ]
 
     koinDependencies = [

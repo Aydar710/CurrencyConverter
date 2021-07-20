@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.currencyconverter.domain.interactor.CurrencyConverterInteractor
 import com.currencyconverter.domain.interactor.GetTodayCurrenciesInteractor
+import com.currencyconverter.domain.interactor.SyncRatesInteractor
 import com.currencyconverter.domain.model.Currencies
 import com.currencyconverter.domain.model.ExchangeRate
 import kotlinx.coroutines.launch
@@ -13,7 +14,8 @@ import java.math.BigDecimal
 
 class MainViewModel(
     private val getTodayCurrenciesInteractor: GetTodayCurrenciesInteractor,
-    private val currencyConverterInteractor: CurrencyConverterInteractor
+    private val currencyConverterInteractor: CurrencyConverterInteractor,
+    private val syncRatesInteractor: SyncRatesInteractor
 ) : ViewModel() {
     companion object {
         private const val DEFAULT_VALUE_IN_RUBLES = 100.0
