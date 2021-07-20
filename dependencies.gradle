@@ -15,6 +15,7 @@ ext {
 
     //androidX
     lifecycleVersion = "2.2.0"
+    roomVersion = "2.2.5"
 
     //kotlin
     kotlinVersion = "1.5.10"
@@ -43,6 +44,9 @@ ext {
     ]
 
     androidXDependencies = [
-            lifecycleViewModelKtx: "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
+            lifecycleViewModelKtx: "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion",
+            room                 : "androidx.room:room-runtime:$roomVersion",
+            roomKtx              : "androidx.room:room-ktx:$roomVersion",
+            roomCompiler         : "androidx.room:room-compiler:$roomVersion"
     ]
 }

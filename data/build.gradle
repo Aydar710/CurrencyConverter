@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -50,12 +51,16 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
+    kapt dependencies.androidXDependencies.roomCompiler
+
     //libraries
     implementation dependencies.libraryDependencies.retrofit
     implementation dependencies.libraryDependencies.retrofitGsonConverter
     implementation dependencies.libraryDependencies.retrofitCoroutinesAdapter
     implementation dependencies.libraryDependencies.okhttpLoger
     implementation dependencies.libraryDependencies.gson
+    api dependencies.androidXDependencies.room
+    api dependencies.androidXDependencies.roomKtx
 
     //koin
     implementation dependencies.koinDependencies.koinCore
