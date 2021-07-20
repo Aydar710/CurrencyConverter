@@ -11,6 +11,7 @@ import com.currencyconverter.domain.interactor.SaveRatesToDatabaseInteractor
 import com.currencyconverter.domain.model.Currencies
 import com.currencyconverter.domain.model.ExchangeRate
 import com.currencyconverter.featuremain.utils.NetworkConnectionUtils
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.math.BigDecimal
 import java.util.*
@@ -94,7 +95,7 @@ class MainViewModel(
         }
     }
 
-    private fun recalculateCurrencies(currencyId: String, newValue: Double) {
+    private fun recalculateCurrencies(currencyId: String, newValue: Double) = viewModelScope.launch(Dispatchers.Default) {
         exchangeRates.find { it.id == currencyId }?.let { exchangeRateToChange ->
             val changedCurrencyRate = (exchangeRateToChange.nominal.toDouble() / exchangeRateToChange.value)
             val convertedList = mutableListOf<CurrencyUi>()
