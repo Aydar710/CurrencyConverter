@@ -1,30 +1,30 @@
 package com.currencyconverter.domain.interactor
 
-import com.currencyconverter.data.model.CurrenciesResponse
-import com.currencyconverter.data.model.Currency
-import com.currencyconverter.data.repository.CurrencyRepository
+import com.currencyconverter.data.model.ExchangeRate
+import com.currencyconverter.data.model.ExchangeRatesResponse
+import com.currencyconverter.data.repository.ExchangeRateRepository
 import com.currencyconverter.domain.model.Currencies
 
-class GetTodayCurrenciesInteractor(private val currencyRepository: CurrencyRepository) {
+class GetTodayCurrenciesInteractor(private val exchangeRateRepository: ExchangeRateRepository) {
 
     suspend operator fun invoke(): Result<Currencies> {
-        val currenciesResult = currencyRepository.getTodayCurrencies()
+        val currenciesResult = exchangeRateRepository.getRates()
         return currenciesResult.getOrNull()?.let { successCurrenciesResult ->
             Result.success(successCurrenciesResult.toDomainCurrencies())
         } ?: Result.failure(currenciesResult.exceptionOrNull() ?: Exception("Exception of result is null"))
     }
 }
 
-private fun CurrenciesResponse.toDomainCurrencies(): Currencies {
-    val domainCurrencies = currencies.map { it.toDomainCurrency() }
+private fun ExchangeRatesResponse.toDomainCurrencies(): Currencies {
+    val domainCurrencies = exchangeRates.map { it.toDomainCurrency() }
     return Currencies(
         date = date,
-        currencies = domainCurrencies
+        exchangeRates = domainCurrencies
     )
 }
 
-private fun Currency.toDomainCurrency(): com.currencyconverter.domain.model.Currency {
-    return com.currencyconverter.domain.model.Currency(
+private fun ExchangeRate.toDomainCurrency(): com.currencyconverter.domain.model.ExchangeRate {
+    return com.currencyconverter.domain.model.ExchangeRate(
         id = id,
         numCode = numCode,
         charCode = charCode,

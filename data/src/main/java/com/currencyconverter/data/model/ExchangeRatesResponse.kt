@@ -5,10 +5,10 @@ import com.google.gson.annotations.JsonAdapter
 import com.google.gson.annotations.SerializedName
 import java.util.*
 
-data class CurrenciesResponse(
+data class ExchangeRatesResponse(
     @SerializedName("Date")
     val date: Date,
     @SerializedName("Valute")
     @JsonAdapter(GsonValutesDeserializer::class)
-    val currencies: List<Currency>
+    val exchangeRates: List<ExchangeRate>
 )

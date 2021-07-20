@@ -1,15 +1,15 @@
 package com.currencyconverter.data.gsonutils
 
-import com.currencyconverter.data.model.Currency
+import com.currencyconverter.data.model.ExchangeRate
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
 import java.lang.reflect.Type
 
-class GsonValutesDeserializer : JsonDeserializer<List<Currency>> {
+class GsonValutesDeserializer : JsonDeserializer<List<ExchangeRate>> {
 
-    override fun deserialize(json: JsonElement?, typeOfT: Type?, context: JsonDeserializationContext?): List<Currency> {
-        val currencies = mutableListOf<Currency>()
+    override fun deserialize(json: JsonElement?, typeOfT: Type?, context: JsonDeserializationContext?): List<ExchangeRate> {
+        val currencies = mutableListOf<ExchangeRate>()
         json?.asJsonObject?.let { jsonObject ->
             jsonObject
                 .entrySet()
@@ -18,7 +18,7 @@ class GsonValutesDeserializer : JsonDeserializer<List<Currency>> {
                 }
                 .forEach { currencyJsonObject ->
                     currencies.add(
-                        Currency(
+                        ExchangeRate(
                             id = currencyJsonObject["ID"].asString,
                             numCode = currencyJsonObject["NumCode"].asInt,
                             charCode = currencyJsonObject["CharCode"].asString,

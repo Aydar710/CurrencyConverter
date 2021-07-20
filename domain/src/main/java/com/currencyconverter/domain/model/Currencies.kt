@@ -4,5 +4,5 @@ import java.util.*
 
 data class Currencies(
     val date: Date,
-    val currencies: List<Currency>
+    val exchangeRates: List<ExchangeRate>
 )

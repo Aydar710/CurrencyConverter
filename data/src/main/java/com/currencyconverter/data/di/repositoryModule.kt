@@ -1,9 +1,9 @@
 package com.currencyconverter.data.di
 
-import com.currencyconverter.data.repository.CurrencyRepository
-import com.currencyconverter.data.repository.CurrencyRepositoryImpl
+import com.currencyconverter.data.repository.ExchangeRateRepository
+import com.currencyconverter.data.repository.ExchangeRateRepositoryImpl
 import org.koin.dsl.module
 
 val repositoryModule = module {
-    factory<CurrencyRepository> { CurrencyRepositoryImpl(get()) }
+    factory<ExchangeRateRepository> { ExchangeRateRepositoryImpl(get()) }
 }

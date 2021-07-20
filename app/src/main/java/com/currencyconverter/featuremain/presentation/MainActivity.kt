@@ -31,7 +31,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initAdapter() {
-        currenciesAdapter = CurrenciesAdapter()
+        currenciesAdapter = CurrenciesAdapter { newValue, changedPosition ->
+            viewModel.onCurrencyValueChanged(newValue, changedPosition)
+        }
         binding.rvCurrencies.adapter = currenciesAdapter
         binding.rvCurrencies.addItemDecoration(
             VerticalSpaceItemDecoration(resources.getDimensionPixelSize(R.dimen.recycler_view_item_space))

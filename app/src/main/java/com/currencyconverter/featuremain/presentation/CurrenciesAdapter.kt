@@ -2,12 +2,15 @@ package com.currencyconverter.featuremain.presentation
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.currencyconverter.databinding.ItemCurrencyBinding
-import com.currencyconverter.domain.model.Currency
+import java.util.*
 
-class CurrenciesAdapter : ListAdapter<Currency, CurrenciesAdapter.CurrencyViewHolder>(CurrencyDiffUtil()) {
+class CurrenciesAdapter(
+    private val valueChanged: (Double, Int) -> Unit
+) : ListAdapter<CurrencyUi, CurrenciesAdapter.CurrencyViewHolder>(CurrencyDiffUtil()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CurrencyViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -20,11 +23,19 @@ class CurrenciesAdapter : ListAdapter<Currency, CurrenciesAdapter.CurrencyViewHo
     }
 
     inner class CurrencyViewHolder(private val binding: ItemCurrencyBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(currency: Currency) {
+        init {
+            binding.etValue.doAfterTextChanged {
+                if (binding.etValue.isFocused) {
+                    valueChanged.invoke(it.toString().toDouble(), adapterPosition)
+                }
+            }
+        }
+
+        fun bind(currency: CurrencyUi) {
             with(binding) {
                 tvCurrencyCode.text = currency.charCode
                 tvCurrecnyName.text = currency.name
-                etValue.setText(currency.value.toString())
+                etValue.setText("%.2f".format(Locale.ROOT, currency.value))
             }
         }
     }

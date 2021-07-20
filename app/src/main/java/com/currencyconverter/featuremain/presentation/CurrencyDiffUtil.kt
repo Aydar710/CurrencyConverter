@@ -1,11 +1,10 @@
 package com.currencyconverter.featuremain.presentation
 
 import androidx.recyclerview.widget.DiffUtil
-import com.currencyconverter.domain.model.Currency
 
-class CurrencyDiffUtil : DiffUtil.ItemCallback<Currency>() {
+class CurrencyDiffUtil : DiffUtil.ItemCallback<CurrencyUi>() {
 
-    override fun areItemsTheSame(oldItem: Currency, newItem: Currency): Boolean = oldItem.id == newItem.id
+    override fun areItemsTheSame(oldItem: CurrencyUi, newItem: CurrencyUi): Boolean = oldItem.id == newItem.id
 
-    override fun areContentsTheSame(oldItem: Currency, newItem: Currency): Boolean = oldItem == newItem
+    override fun areContentsTheSame(oldItem: CurrencyUi, newItem: CurrencyUi): Boolean = oldItem == newItem
 }

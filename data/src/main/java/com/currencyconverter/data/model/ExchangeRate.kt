@@ -2,7 +2,7 @@ package com.currencyconverter.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class Currency(
+data class ExchangeRate(
     @SerializedName("ID")
     val id: String,
     @SerializedName("NumCode")
