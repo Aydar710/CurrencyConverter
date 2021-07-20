@@ -2,7 +2,6 @@ package com.currencyconverter.data.model.local
 
 import androidx.room.Embedded
 import androidx.room.Relation
-import com.currencyconverter.data.model.remote.ExchangeRate
 
 data class ExchangeRatesCompound(
     @Embedded
@@ -11,5 +10,5 @@ data class ExchangeRatesCompound(
         parentColumn = "id",
         entityColumn = "rateHolderId"
     )
-    val rates: List<ExchangeRate>
+    val rates: List<ExchangeRateLocal>
 )

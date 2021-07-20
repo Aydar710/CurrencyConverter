@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.currencyconverter.data.database.dao.ExchangeRateDao
 import com.currencyconverter.data.database.typeconverters.DateTypeConverter
 import com.currencyconverter.data.model.local.ExchangeRateLocal
 import com.currencyconverter.data.model.local.ExchangeRatesLocal
@@ -29,4 +30,6 @@ abstract class ExchangeRateDatabase : RoomDatabase() {
             DATABASE_NAME
         ).build()
     }
+
+    abstract fun exchangeRateDao(): ExchangeRateDao
 }
