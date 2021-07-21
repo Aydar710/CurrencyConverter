@@ -8,8 +8,8 @@ import com.currencyconverter.domain.model.ExchangeRate
 
 class GetRatesFromCacheInteractor(private val exchangeRateLocalRepository: ExchangeRateLocalRepository) {
 
-    suspend operator fun invoke(): Currencies {
-        return exchangeRateLocalRepository.getLastRates().toDomainCurrencies()
+    suspend operator fun invoke(): Currencies? {
+        return exchangeRateLocalRepository.getLastRates()?.toDomainCurrencies()
     }
 
     private fun ExchangeRatesCompound.toDomainCurrencies(): Currencies {

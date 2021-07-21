@@ -76,9 +76,13 @@ class MainViewModel(
     private suspend fun showCurrenciesFromCache() {
         _loading.postValue(true)
         val cacheCurrencies = getRatesFromCacheInteractor.invoke()
-        _actualDataDate.postValue(cacheCurrencies.date)
-        changeExchangeRates(cacheCurrencies)
-        _currencies.postValue(exchangeRates.mapToCurrencyUiWithDefaultValue(DEFAULT_VALUE_IN_RUBLES))
+        cacheCurrencies?.let { cacheCurrenciesNotNull ->
+            _actualDataDate.postValue(cacheCurrenciesNotNull.date)
+            changeExchangeRates(cacheCurrenciesNotNull)
+            _currencies.postValue(exchangeRates.mapToCurrencyUiWithDefaultValue(DEFAULT_VALUE_IN_RUBLES))
+        } ?: run {
+            _shouldShowErrorText.postValue(true)
+        }
         _loading.postValue(false)
     }
 

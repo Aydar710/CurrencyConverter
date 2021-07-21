@@ -10,7 +10,7 @@ interface ExchangeRateLocalRepository {
 
     suspend fun saveExchangeRatesLocal(exchangeRatesLocal: ExchangeRatesLocal): Int
 
-    suspend fun getLastRates(): ExchangeRatesCompound
+    suspend fun getLastRates(): ExchangeRatesCompound?
 
     suspend fun clearDatabase()
 }

@@ -28,7 +28,7 @@ interface ExchangeRateDao {
     suspend fun insertExchangeRates(exchangeRatesLocal: ExchangeRatesLocal): Long
 
     @Query("SELECT * FROM ExchangeRatesLocal ORDER BY date ASC LIMIT 1")
-    suspend fun getLastRates(): ExchangeRatesCompound
+    suspend fun getLastRates(): ExchangeRatesCompound?
 
     @Query("DELETE FROM ExchangeRatesLocal")
     suspend fun clear()

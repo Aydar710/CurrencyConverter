@@ -15,7 +15,7 @@ class ExchangeRateLocalRepositoryImpl(private val exchangeRateDao: ExchangeRateD
         return exchangeRateDao.insertExchangeRates(exchangeRatesLocal).toInt()
     }
 
-    override suspend fun getLastRates(): ExchangeRatesCompound = exchangeRateDao.getLastRates()
+    override suspend fun getLastRates(): ExchangeRatesCompound? = exchangeRateDao.getLastRates()
 
     override suspend fun clearDatabase() {
         exchangeRateDao.clear()
