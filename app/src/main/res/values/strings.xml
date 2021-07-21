@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">CurrencyConverter</string>
     <string name="data_as_of">Данные на %s</string>
+    <string name="error_loading_data">Ошибка загрузки данных\nПотяните, чтобы обновить</string>
 </resources>

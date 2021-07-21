@@ -61,5 +61,6 @@ ext {
             lifecycleExtensions  : "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion",
             lifecycleLivedataKtx : "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion",
             lifecycleRuntimeKtx  : "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion",
+            swipeToRefresh       : "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
     ]
 }

@@ -65,4 +65,5 @@ dependencies {
     implementation dependencies.androidXDependencies.lifecycleViewModelKtx
     implementation dependencies.androidXDependencies.lifecycleRuntimeKtx
     implementation dependencies.androidXDependencies.lifecycleExtensions
+    implementation dependencies.androidXDependencies.swipeToRefresh
 }

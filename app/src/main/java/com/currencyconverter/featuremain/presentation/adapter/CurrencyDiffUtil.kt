@@ -1,6 +1,7 @@
-package com.currencyconverter.featuremain.presentation
+package com.currencyconverter.featuremain.presentation.adapter
 
 import androidx.recyclerview.widget.DiffUtil
+import com.currencyconverter.featuremain.presentation.CurrencyUi
 
 class CurrencyDiffUtil : DiffUtil.ItemCallback<CurrencyUi>() {
 

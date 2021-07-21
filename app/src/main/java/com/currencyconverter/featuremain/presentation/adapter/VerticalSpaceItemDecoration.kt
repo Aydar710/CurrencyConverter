@@ -1,4 +1,4 @@
-package com.currencyconverter.featuremain.presentation
+package com.currencyconverter.featuremain.presentation.adapter
 
 import android.graphics.Rect
 import androidx.recyclerview.widget.RecyclerView

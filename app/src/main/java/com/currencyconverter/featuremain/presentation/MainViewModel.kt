@@ -30,10 +30,14 @@ class MainViewModel(
     // public live data region
     val currencies: LiveData<List<CurrencyUi>> get() = _currencies
     val actualDataDate: LiveData<Date> get() = _actualDataDate
+    val shouldShowErrorText: LiveData<Boolean> get() = _shouldShowErrorText
+    val loading: LiveData<Boolean> get() = _loading
 
     // private live data region
     private val _currencies = MutableLiveData<List<CurrencyUi>>()
     private val _actualDataDate = MutableLiveData<Date>()
+    private val _shouldShowErrorText = MutableLiveData<Boolean>()
+    private val _loading = MutableLiveData<Boolean>()
 
     private lateinit var exchangeRates: MutableList<ExchangeRate>
 
@@ -44,6 +48,7 @@ class MainViewModel(
     }
 
     fun showCurrencies() {
+        _shouldShowErrorText.postValue(false)
         viewModelScope.launch {
             if (networkConnectionUtils.isNetworkAvailable()) {
                 showCurrenciesFromNetwork()
@@ -54,22 +59,27 @@ class MainViewModel(
     }
 
     private suspend fun showCurrenciesFromNetwork() {
+        _loading.postValue(true)
         val todayCurrenciesResult = getTodayCurrenciesInteractor.invoke()
         todayCurrenciesResult.getOrNull()?.let {
             _actualDataDate.postValue(it.date)
             changeExchangeRates(it)
             _currencies.postValue(exchangeRates.mapToCurrencyUiWithDefaultValue(DEFAULT_VALUE_IN_RUBLES))
+            _loading.postValue(false)
             saveRatesToDatabaseInteractor.invoke(it)
         } ?: run {
-            // TODO: show error or smth
+            _shouldShowErrorText.postValue(true)
+            _loading.postValue(false)
         }
     }
 
     private suspend fun showCurrenciesFromCache() {
+        _loading.postValue(true)
         val cacheCurrencies = getRatesFromCacheInteractor.invoke()
         _actualDataDate.postValue(cacheCurrencies.date)
         changeExchangeRates(cacheCurrencies)
         _currencies.postValue(exchangeRates.mapToCurrencyUiWithDefaultValue(DEFAULT_VALUE_IN_RUBLES))
+        _loading.postValue(false)
     }
 
     private fun changeExchangeRates(it: Currencies) {

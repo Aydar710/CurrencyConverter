@@ -1,4 +1,4 @@
-package com.currencyconverter.featuremain.presentation
+package com.currencyconverter.featuremain.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,6 +6,7 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.currencyconverter.databinding.ItemCurrencyBinding
+import com.currencyconverter.featuremain.presentation.CurrencyUi
 import java.util.*
 
 class CurrenciesAdapter(
