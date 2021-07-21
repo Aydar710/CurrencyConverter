@@ -9,6 +9,7 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginHorizontal="16dp"
         android:orientation="vertical">
 
         <TextView
@@ -25,11 +26,9 @@
             android:id="@+id/rvCurrencies"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginHorizontal="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:nestedScrollingEnabled="true"
             android:overScrollMode="never"
-            android:paddingHorizontal="4dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_currency" />
 

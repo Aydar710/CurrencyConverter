@@ -26,7 +26,11 @@ class CurrenciesAdapter(
         init {
             binding.etValue.doAfterTextChanged {
                 if (binding.etValue.isFocused) {
-                    valueChanged.invoke(it.toString().toDouble(), adapterPosition)
+                    if (it.toString().isNotEmpty()) {
+                        valueChanged.invoke(it.toString().toDouble(), adapterPosition)
+                    } else {
+                        valueChanged.invoke(0.0, adapterPosition)
+                    }
                 }
             }
         }
